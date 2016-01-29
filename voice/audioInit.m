@@ -4,5 +4,6 @@ function audio = audioInit(audioFile)
 [y,Fs] = audioread(audioFile);
 audio.y = y';
 audio.f = Fs;
+audio.dur = length(y)/Fs;
 
 end
