@@ -4,8 +4,8 @@ My toolbox for audio and image processing, pattern recognition and machine learn
 # TODO
   * Audio structure
   * Audio feature read setup
-  * ROC curve and plot function
   * Rewrite energy and zcr function
+  * Documentation
 
 # Dependence
   * covartech PRT: https://github.com/covartech/PRT
