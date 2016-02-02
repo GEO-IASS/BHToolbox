@@ -33,7 +33,9 @@ if plotFlag ~= 0
     title(titleStr);
     xlabel('P_FA');ylabel('P_D');
     hold on;
-    plot(0:0.1:1, 0:0.1:1, '--k');
+    if plotFlag == 2
+        plot(0:0.1:1, 0:0.1:1, '--k');
+    end;
     hold off;
 end
 
