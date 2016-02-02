@@ -10,7 +10,7 @@ if eIns ~= 0
 end
 
 if zIns ~= 0
-    audio.z = zerocrossing(audio.frames, 'ZCR');
+    audio.z = zerocrossing(audio.frames);
     if zIns == 2
         audio.z = (audio.z-mean(audio.z))/var(audio.z);
     end
@@ -21,14 +21,7 @@ if MFCCIns == 19
         'maxfreq', 8000, 'sumpower', 0, 'fbtype', 'htkmel', 'dcttype', 3, ...
         'numcep', 20, 'wintime', audio.winTime/1000, 'hoptime', audio.HopTime/1000);
     audio.mfcc = mfccFrames(2:20,:);
-    
-    % discard more e and z
-    if isfield(audio, 'e')
-        audio.e = audio.e(1:size(audio.mfcc, 2));
-    end
-    if isfield(audio, 'z')
-        audio.z = audio.z(1:size(audio.mfcc, 2));
-    end
+
 elseif MFCCIns == 36
     % get mfcc
     [mfcc, ~, ~] = melfcc(audio.frames, audio.f, 'lifterexp', -22, 'nbands', 20, ...
@@ -63,13 +56,6 @@ elseif MFCCIns == 36
     end
     audio.mfcc = mfccFrames;
     
-    % discard more e and z
-    if isfield(audio, 'e')
-        audio.e = audio.e(1:size(audio.mfcc, 2));
-    end
-    if isfield(audio, 'z')
-        audio.z = audio.z(1:size(audio.mfcc, 2));
-    end
 end
 
 end

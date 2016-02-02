@@ -4,7 +4,6 @@ My toolbox for audio and image processing, pattern recognition and machine learn
 # TODO
   * Audio structure
   * Audio feature read setup
-  * Rewrite energy and zcr function
   * Documentation
 
 # Dependence
@@ -12,4 +11,4 @@ My toolbox for audio and image processing, pattern recognition and machine learn
   * Dan Ellis: https://www.ee.columbia.edu/~dpwe/resources/matlab/
 
 # Known Bugs
-  * The result of segment is not the same as Dan Ells' mfcc function
+  * The result of segment is not the same as Dan Ells' mfcc function(Solved)

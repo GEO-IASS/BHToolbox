@@ -18,5 +18,9 @@ for i = 1:stepNum:stepNum*frameNum
     audio.frames(:,col) = frames(i:(i+dataNum-1));
     col = col+1;
 end
+
+% discard last few frames to make it matches the result of Dan Ellis' mfcc
+% program
+audio.frames = audio.frames(:,1:end-ceil(audio.winTime/audio.HopTime));
     
 end
