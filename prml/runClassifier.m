@@ -1,9 +1,14 @@
-function decStat = runClassifier(features, classifier, varargin)
+function [decStat, classifier] = runClassifier(features, classifier, varargin)
 
-[type] = process_options(varargin, 'type', 'knn');
+[type, k, addFlag] = process_options(varargin, 'type', 'knn', 'k', 1, 'keepDat', 0);
 
 if strcmp(type, 'knn')
-    decStat = trainKNN(features, classifier);
+    [decStat,classifier] = runKNN(features, classifier, 'k', k);
+end
+
+if addFlag
+    classifier.test = features;
+    classifier.decStat = decStat;
 end
 
 end

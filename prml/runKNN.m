@@ -11,19 +11,22 @@
 % Returns:
 %   decStat:        N vector contains of decStat for each test data
 
-function decStat = runKNN(features, classifier, varargin)
+function [decStat,classifier] = runKNN(features, classifier, varargin)
 
 if ~isfield(classifier, 'feature') && ~isfield(classifier, 'targets')
     error('classifier should has features and targets\n');
 end
 
 [k] = process_options(varargin, 'k', 1);
+classifier.k = k;
 
 testNum = size(features, 2);
 decStat = zeros(1, testNum);
 
 for i = 1:testNum
-    
+    dist = eucDist(features(:,i), classifier.feature);
+    [~, sortIndex] = sort(dist);
+    decStat(i) = sum(classifier.targets(sortIndex(1:k)))/k;
 end
 
 end
