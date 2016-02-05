@@ -1,3 +1,12 @@
+% audioInit - Init an audio structure
+% 
+% Usage: audio = audioInit(fullfile(audioPath, audioName))
+%
+% Arguments:
+%   audioFile:      absolute path of audio file
+% Returns:
+%   audio:          an audio structure
+
 function audio = audioInit(audioFile)
     
 [audio.path, audio.name, audio.format] = fileparts(audioFile);

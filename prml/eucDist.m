@@ -1,4 +1,4 @@
-% runKNN - compute euclidian distance between reference data points and
+% eucDist - compute euclidian distance between reference data points and
 % datas
 % 
 % Usage: dist = eucDist(ref, datas)

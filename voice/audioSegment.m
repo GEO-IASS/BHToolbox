@@ -1,3 +1,15 @@
+% audioSegment -    segment audio files into frames with specific window
+%                   length and overlap length
+% 
+% Usage: audio = audioSegment(audio, windowLen, overlap)
+%
+% Arguments:
+%   audio:          audio structure
+%   windowLen:      window duration, in miliseconds
+%   overlap:        overlap duration, in miliseconds
+% Returns:
+%   audio:          audio structure
+
 function audio = audioSegment(audio, windowLen, overlap)
 
 audio.winTime = windowLen;

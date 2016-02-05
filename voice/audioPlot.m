@@ -1,3 +1,16 @@
+% audioPlot -       plot features of a audio file, features can be 
+%                   amplitude, energy and zero crossing rate
+% 
+% Usage: axis = audioPlot(audio, varargin)
+%
+% Arguments:
+%   audio:          audio structure
+%   vargin:         
+%       'title':    title for plot
+%       'plotName': feature to plot, can be 'amplitude', 'energy' or 'zcr'
+% Returns:
+%   ax:             handle of the axis
+
 function ax = audioPlot(audio, varargin)
 
 [titleStr, plotName] = process_options(varargin, ...

@@ -1,3 +1,18 @@
+% audioSetup -      set up audio structure with specific features
+%                   audio should already be segmented
+% 
+% Usage: audio = audioSetup(audio, varargin)
+%
+% Arguments:
+%   audio:          audio structure
+%   vargin:         
+%       'energy':   set up energy (default 0)
+%       'zcr':      set up zero crossing rate(default 0)
+%       'MFCC': 	set up MFCC(default 0)
+%       'amplitude':set up amplitude for each frame(default 0)
+% Returns:
+%   audio:          audio structure
+
 function audio = audioSetup(audio, varargin)
 
 [eIns, zIns, MFCCIns, ampIns, testIndex] = process_options(varargin, ...

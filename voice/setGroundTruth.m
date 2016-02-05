@@ -1,3 +1,16 @@
+% setGroundTruth -  set ground truth (or label) of the audio file
+% 
+% Usage: audio = setGroundTruth(audio, truthMat, varargin)
+%
+% Arguments:
+%   audio:          audio structure
+%   truthMat:       matrix of the truth of label to set, should have the
+%                   same num of columns as audio.frames
+%   vargin:         
+%       'name':   	name of the truth or label
+% Returns:
+%   audio:          audio structure
+
 function audio = setGroundTruth(audio, truthMat, varargin)
 
 [truthName] = process_options(varargin, ...

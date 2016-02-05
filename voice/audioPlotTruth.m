@@ -1,3 +1,16 @@
+% audioPlotTruth -  Use imagesc to plot the ground truth or orther labels
+%                   of the audio file
+% 
+% Usage: axis = audioPlotTruth(audio, varargin)
+%
+% Arguments:
+%   audio:          audio structure
+%   vargin:         
+%       'title':    title for plot
+%       'truthNum': the rows in audio.truth.data to plot
+% Returns:
+%   ax:             handle of the axis
+
 function ax = audioPlotTruth(audio, varargin)
 
 [titleStr, truthNum] = process_options(varargin, ...
