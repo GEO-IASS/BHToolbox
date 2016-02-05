@@ -1,11 +1,10 @@
-function fig = audioPlotTruth(audio, varargin)
+function ax = audioPlotTruth(audio, varargin)
 
 [titleStr, truthNum] = process_options(varargin, ...
     'title', 'Transcribed Truth', 'truthNum', 1:audio.truth.num);
 
-figure;
 x = (1:size(audio.truth.data,2))/1000*audio.HopTime;
-fig = imagesc(x, 1:length(truthNum), audio.truth.data(truthNum,:));
+imagesc(x, 1:length(truthNum), audio.truth.data(truthNum,:));
 ax = gca; 
 ax.YTick = 1:1:length(truthNum);
 ax.YTickLabel = audio.truth.name(truthNum);

@@ -1,6 +1,8 @@
 function audio = audioSetup(audio, varargin)
 
-[eIns, zIns, MFCCIns] = process_options(varargin, 'energy', 0, 'zcr', 0, 'MFCC', 0);
+[eIns, zIns, MFCCIns, ampIns, testIndex] = process_options(varargin, ...
+    'energy', 0, 'zcr', 0, 'MFCC', 0, 'amplitude', 0, ...
+    'testIndex', zeros(1,size(audio.frames,2)));
 
 if eIns ~= 0
     audio.e = energy(audio.frames);
@@ -57,5 +59,11 @@ elseif MFCCIns == 36
     audio.mfcc = mfccFrames;
     
 end
+
+if ampIns ~= 0
+    audio.amplitude = audio.frames(floor(size(audio.frames, 1)/2),:);
+end
+
+audio.testIndex = testIndex;
 
 end
