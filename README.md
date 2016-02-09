@@ -9,6 +9,6 @@ My toolbox for audio and image processing, pattern recognition and machine learn
 # Dependence
   * covartech PRT: https://github.com/covartech/PRT
   * Dan Ellis: https://www.ee.columbia.edu/~dpwe/resources/matlab/
+  * VoiceBox: http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html
 
 # Known Bugs
-  * The result of segment is not the same as Dan Ells' mfcc function(Solved)
