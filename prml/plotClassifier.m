@@ -25,6 +25,7 @@ imagesc(x1([1 end]), x2([2 end]), dsTest);
 title(strcat(titleStr, '(k=', num2str(classifier.k), ')'));
 colormap(summer(classifier.k+1));
 colorbar('Ticks', linspace(0,1,classifier.k+1), 'TickLabels', colorLabel);
+set(gca,'YDir','normal')
 
 if plotData ~= 0
     hold on;
