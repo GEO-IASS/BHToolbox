@@ -10,7 +10,11 @@
 function audio = audioInit(audioFile)
     
 [audio.path, audio.name, audio.format] = fileparts(audioFile);
-[y,Fs] = audioread(audioFile);
+if strcmp(audio.format, '.wav')
+    [y,Fs] = audioread(audioFile);
+elseif strcmp(audio.format, '.sph')
+    [y,Fs,~,~,~] = readsph(audioFile);
+end
 audio.y = y';
 audio.f = Fs;
 audio.dur = length(y)/Fs;
