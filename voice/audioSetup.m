@@ -38,6 +38,7 @@ if MFCCIns == 19
         'maxfreq', 8000, 'sumpower', 0, 'fbtype', 'htkmel', 'dcttype', 3, ...
         'numcep', 20, 'wintime', audio.winTime/1000, 'hoptime', audio.HopTime/1000);
     audio.mfcc = mfccFrames(2:20,:);
+    audio = audioTruncate(audio);
 
 elseif MFCCIns == 36
     % get mfcc
@@ -72,7 +73,7 @@ elseif MFCCIns == 36
         mfccFrames(25:36,i-2) = s./const;
     end
     audio.mfcc = mfccFrames;
-    
+    audio = audioTruncate(audio);
 end
 
 if ampIns ~= 0

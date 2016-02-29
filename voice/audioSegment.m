@@ -33,6 +33,6 @@ end
 
 % discard last few frames to make it matches the result of Dan Ellis' mfcc
 % program
-audio.frames = audio.frames(:,1:end-ceil(audio.winTime/audio.HopTime));
+%audio.frames = audio.frames(:,1:end-ceil(audio.winTime/audio.HopTime));
     
 end
