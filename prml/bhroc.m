@@ -14,7 +14,7 @@ if intFlag == 0
         pf(i) = sum(H0 > H0(i))/length(H0);
         pd(i) = sum(H1 > H0(i))/length(H1);
     end
-
+    [pf,I] = sort(pf); pd = pd(I);
 else
     [f0,xi0] = ksdensity(H0, min([H0,H1]):0.01:max([H0,H1]));
     [f1,xi1] = ksdensity(H1, min([H0,H1]):0.01:max([H0,H1]));
@@ -22,6 +22,7 @@ else
         pf(i) = trapz(xi0(i:length(xi0)), f0(i:length(xi0)));
         pd(i) = trapz(xi1(i:length(xi0)), f1(i:length(xi0)));
     end
+    [pf,I] = sort(pf); pd = pd(I);
 end
 
 if plotFlag ~= 0
