@@ -1,7 +1,7 @@
 function [pf, pd] = bhroc(H0, H1, varargin)
 
 [plotFlag, titleStr, intFlag, axs] = process_options(varargin, ...
-    'plot', 0, 'title', 'ROC', 'integral', 0, 'ax', gca);
+    'plot', 0, 'title', 'ROC', 'integral', 0, 'ax', 0);
 
 H0 = sort(H0);H0 = reshape(H0, 1, []);
 H1 = sort(H1);H1 = reshape(H1, 1, []);
@@ -25,6 +25,7 @@ else
 end
 
 if plotFlag ~= 0
+    axs = gca;
     if max(pf) < 1
         pf = [0, pf, 1];
         pd = [0, pd, 1];
