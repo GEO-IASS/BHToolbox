@@ -1,7 +1,7 @@
-function [pf, pd] = bhCrossValidation(H0, H1, numFolds, k)
+function [pf, pd, varargout] = bhCrossValidation(H0, H1, numFolds, k)
 
-[keys0, keys1] = generateKey(H0, ...
-    H1, numFolds);
+
+[keys0, keys1] = generateKey(H0, H1, numFolds);
 targetsTrain = [zeros(length(H0)/numFolds*(numFolds-1),1);...
     ones(length(H1)/numFolds*(numFolds-1), 1)];
 targetsTest = [zeros(length(H0)/numFolds,1);...
@@ -19,5 +19,8 @@ end
 Class0 = decStat(:,1:size(targetsTest,1)/2); Class0 = Class0(:);
 Class1 = decStat(:,(size(targetsTest,1)/2+1):end); Class1 = Class1(:);
 [pf,pd] = bhroc(Class0,Class1);
+
+varargout{1} = keys0;
+varargout{2} = keys1;
 
 end
