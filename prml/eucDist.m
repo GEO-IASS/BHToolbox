@@ -21,7 +21,11 @@ dist = zeros(N, M);
 
 for i = 1:N
     for j = 1:M
-        dist(i,j) = sqrt(sum((refs(:,i)-datas(:,j)).^2));
+%         if sum(isnan(refs(:,i))) == 0
+             dist(i,j) = sqrt(sum((refs(~isnan(refs(:,i)),i)-datas(~isnan(refs(:,i)),j)).^2));
+%         else
+%             dist(i,j) = sqrt(sum((refs(~isnan(refs(:,i)),i)-datas(~isnan(refs(:,i),j))).^2));
+%         end
     end
 end
 
