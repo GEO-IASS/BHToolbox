@@ -20,7 +20,8 @@ timeDur = audio.HopTime;
 
 if isfield(audio, 'truth')
     audio.truth.name = [audio.truth.name, cellstr(truthName)];
-    audio.truth.data = [audio.truth.data; zeros(1, size(audio.frames, 2))];
+    audio.truth.data = [audio.truth.data; zeros(1, max(size(audio.frames, 2),...
+        size(audio.truth.data,2)))];
     audio.truth.num = audio.truth.num + 1;
 else
     audio.truth.name = cellstr(truthName);
@@ -33,5 +34,6 @@ for j = 1:size(truthMat, 1)
         audio.truth.data(audio.truth.num, k) = 1;
     end
 end
+audio.truth.data = audio.truth.data(:,1:size(audio.frames,2));
 
 end
