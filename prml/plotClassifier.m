@@ -13,25 +13,37 @@ x2 = linspace(min(classifier.feature(2,:))-0.1*x2range, max(classifier.feature(2
 xTest = [xTest1(:), xTest2(:)];
 
 % run classifier with all data in space
-dsTest = runClassifier(xTest', classifier, 'k', classifier.k);
+if strcmp(classifier.type, 'knn')
+    dsTest = runClassifier(xTest, classifier, 'k', classifier.k);
+else
+    dsTest = runClassifier(xTest, classifier, 'type', classifier.type);
+end
 dsTest = reshape(dsTest, length(x1), length(x2));
 
+if strcmp(classifier.type,'knn')
 colorLabel = cell(1, classifier.k+1);
 for i = 1:classifier.k+1
     colorLabel(i) = cellstr(strcat(num2str(i-1),'/',num2str(classifier.k)));
 end
+end
 
 imagesc(x1([1 end]), x2([2 end]), dsTest);
-title(strcat(titleStr, '(k=', num2str(classifier.k), ')'));
+if strcmp(classifier.type,'knn')
+    title(strcat(titleStr, '(k=', num2str(classifier.k), ')'));
+else
+    title(titleStr);
+end
+if strcmp(classifier.type,'knn')
 colormap(summer(classifier.k+1));
 colorbar('Ticks', linspace(0,1,classifier.k+1), 'TickLabels', colorLabel);
+end
 set(gca,'YDir','normal')
 
 if plotData ~= 0
     hold on;
-    plot(classifier.feature(1,classifier.targets==0), classifier.feature(2,classifier.targets==0), ...
+    plot(classifier.feature(classifier.targets==0,1), classifier.feature(classifier.targets==0,2), ...
         'bs');
-    plot(classifier.feature(1,classifier.targets==1), classifier.feature(2,classifier.targets==1), ...
+    plot(classifier.feature(classifier.targets==1,1), classifier.feature(classifier.targets==1,2), ...
         'rs');
     hold off;
     legend(className);
