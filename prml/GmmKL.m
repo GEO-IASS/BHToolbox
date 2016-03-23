@@ -33,7 +33,6 @@ if oneDir == 1
 end
 
 if plotFlag == 1
-    figure;
     %clims = [0,8];
     imagesc(KL);colorbar;
     varargout{1} = gca;
