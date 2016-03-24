@@ -4,6 +4,8 @@ function [decStat, classifier] = runClassifier(features, classifier, varargin)
 
 if strcmp(type, 'knn')
     [decStat,classifier] = runKNN(features, classifier, 'k', k);
+elseif strcmp(type, 'bayes')
+    [decStat,classifier] = runBayes(features, classifier);
 end
 
 if addFlag
