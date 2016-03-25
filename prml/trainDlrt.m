@@ -1,8 +1,8 @@
-function classifier = trainKNN(features, targets, varargin)
+function classifier = trainDlrt(features, targets, varargin)
 
 [k] = process_options(varargin, 'k', 1);
 
-classifier.type = 'knn';
+classifier.type = 'dlrt';
 
 classifier.k = k;
 
