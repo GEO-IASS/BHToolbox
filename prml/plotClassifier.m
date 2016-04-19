@@ -30,6 +30,8 @@ end
 imagesc(x1([1 end]), x2([2 end]), dsTest);
 if strcmp(classifier.type,'knn') || strcmp(classifier.type,'dlrt')
     title(strcat(titleStr, '(k=', num2str(classifier.k), ')'));
+elseif strcmp(classifier.type,'bayes')
+    title([titleStr,' (',classifier.option,')']);
 else
     title(titleStr);
 end
@@ -41,6 +43,10 @@ if strcmp(classifier.type,'knn')
         caxis([-max(abs(minDS),abs(maxDS)), max(abs(minDS),abs(maxDS))]);
     end
     colorbar('Ticks', linspace(0,1,classifier.k+1), 'TickLabels', colorLabel);
+elseif strcmp(classifier.type,'lr')
+    colormap(bhColorMap(256));
+    %colormap hsv;
+    colorbar;
 else
     %colormap(hsv)
     colormap(bhColorMap(256));
@@ -57,7 +63,7 @@ if plotData ~= 0
     plot(classifier.feature(classifier.targets==0,1), classifier.feature(classifier.targets==0,2), ...
         'b.','markersize',10);
     plot(classifier.feature(classifier.targets==1,1), classifier.feature(classifier.targets==1,2), ...
-        'r.','markersize',10);
+        'g.','markersize',10);
     hold off;
     legend(className);
 end

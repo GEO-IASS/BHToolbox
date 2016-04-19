@@ -30,8 +30,10 @@ else
 end
 
 for j = 1:size(truthMat, 1)
-    for k = max(round(truthMat(j,1)*1000/timeDur), 1):round(truthMat(j,2)*1000/timeDur)
-        audio.truth.data(audio.truth.num, k) = 1;
+    if sum(isnan(truthMat(j,:))) == 0
+        for k = max(round(truthMat(j,1)*1000/timeDur), 1):round(truthMat(j,2)*1000/timeDur)
+            audio.truth.data(audio.truth.num, k) = 1;
+        end
     end
 end
 audio.truth.data = audio.truth.data(:,1:size(audio.frames,2));

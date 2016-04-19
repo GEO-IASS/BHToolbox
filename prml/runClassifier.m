@@ -10,6 +10,12 @@ elseif strcmp(type, 'fld')
     [decStat,classifier] = runFld(features, classifier);
 elseif strcmp(type, 'dlrt')
     [decStat,classifier] = runDlrt(features, classifier, 'k', classifier.k);
+elseif strcmp(type, 'svm')
+    [decStat,classifier] = runSVM(classifier, features);
+elseif strcmp(type, 'rvm')
+    [decStat,classifier] = runRVM(classifier, features);
+elseif strcmp(type, 'ld')
+    [decStat,classifier] = runLR(features, classifier);
 end
 
 if addFlag

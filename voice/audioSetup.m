@@ -15,9 +15,9 @@
 
 function audio = audioSetup(audio, varargin)
 
-[eIns, zIns, MFCCIns, ampIns, testIndex] = process_options(varargin, ...
+[eIns, zIns, MFCCIns, ampIns, testIndex, PLPIns] = process_options(varargin, ...
     'energy', 0, 'zcr', 0, 'MFCC', 0, 'amplitude', 0, ...
-    'testIndex', zeros(1,size(audio.frames,2)));
+    'testIndex', zeros(1,size(audio.frames,2)), 'plp', 0);
 
 if eIns ~= 0
     audio.e = energy(audio.frames);
@@ -78,6 +78,18 @@ end
 
 if ampIns ~= 0
     audio.amplitude = audio.frames(floor(size(audio.frames, 1)/2),:);
+end
+
+if PLPIns ~= 0
+%     [cepstra,~,~] = melfcc(audio.y,audio.f,'preemph',0,'modelorder',PLPIns,'numcep',PLPIns+1,'dcttype',1,'dither',1,'nbands',...
+%         ceil(hz2bark(audio.f/2))+1,'fbtype','bark','usecmp',1);
+    [cepstra, ~, ~, ~, ~, ~] = rastaplp(audio.y, audio.f, 1, PLPIns);
+    %audio.mfcc = [cepstra;diff(cepstra);diff(diff(cepstra))];
+    mfccFrames = melfcc(audio.y, audio.f, 'lifterexp', -22, 'nbands', 26, ...
+        'maxfreq', 8000, 'sumpower', 0, 'fbtype', 'htkmel', 'dcttype', 3, ...
+        'numcep', 20, 'wintime', audio.winTime/1000, 'hoptime', audio.HopTime/1000);
+    audio.mfcc = [mfccFrames(2:20,:);cepstra(2:end,:)];
+    audio = audioTruncate(audio);
 end
 
 audio.testIndex = testIndex;
