@@ -42,7 +42,7 @@ if MFCCIns == 19
 
 elseif MFCCIns == 36
     % get mfcc
-    [mfcc, ~, ~] = melfcc(audio.frames, audio.f, 'lifterexp', -22, 'nbands', 20, ...
+    mfcc = melfcc(audio.y, audio.f, 'lifterexp', -22, 'nbands', 20, ...
         'maxfreq', 8000, 'sumpower', 0, 'fbtype', 'htkmel', 'dcttype', 3, ...
         'numcep', 13, 'wintime', audio.winTime/1000, 'hoptime', audio.HopTime/1000);
     frameNum = size(mfcc,2);
@@ -85,10 +85,10 @@ if PLPIns ~= 0
 %         ceil(hz2bark(audio.f/2))+1,'fbtype','bark','usecmp',1);
     [cepstra, ~, ~, ~, ~, ~] = rastaplp(audio.y, audio.f, 1, PLPIns);
     %audio.mfcc = [cepstra;diff(cepstra);diff(diff(cepstra))];
-    mfccFrames = melfcc(audio.y, audio.f, 'lifterexp', -22, 'nbands', 26, ...
-        'maxfreq', 8000, 'sumpower', 0, 'fbtype', 'htkmel', 'dcttype', 3, ...
-        'numcep', 20, 'wintime', audio.winTime/1000, 'hoptime', audio.HopTime/1000);
-    audio.mfcc = [mfccFrames(2:20,:);cepstra(2:end,:)];
+%     mfccFrames = melfcc(audio.y, audio.f, 'lifterexp', -22, 'nbands', 26, ...
+%         'maxfreq', 8000, 'sumpower', 0, 'fbtype', 'htkmel', 'dcttype', 3, ...
+%         'numcep', 20, 'wintime', audio.winTime/1000, 'hoptime', audio.HopTime/1000);
+    audio.mfcc = [cepstra(1:end,:)];
     audio = audioTruncate(audio);
 end
 
