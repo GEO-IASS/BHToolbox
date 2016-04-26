@@ -43,7 +43,7 @@ if strcmp(classifier.type,'knn')
         caxis([-max(abs(minDS),abs(maxDS)), max(abs(minDS),abs(maxDS))]);
     end
     colorbar('Ticks', linspace(0,1,classifier.k+1), 'TickLabels', colorLabel);
-elseif strcmp(classifier.type,'lr')
+elseif strcmp(classifier.type,'ld')
     colormap(bhColorMap(256));
     %colormap hsv;
     colorbar;
@@ -56,6 +56,7 @@ else
     end
     colorbar;
 end
+    
 set(gca,'YDir','normal')
 
 if plotData ~= 0
@@ -63,10 +64,22 @@ if plotData ~= 0
     plot(classifier.feature(classifier.targets==0,1), classifier.feature(classifier.targets==0,2), ...
         'b.','markersize',10);
     plot(classifier.feature(classifier.targets==1,1), classifier.feature(classifier.targets==1,2), ...
-        'g.','markersize',10);
+        'r.','markersize',10);
     hold off;
     legend(className);
 end
+
+hold on;
+if strcmp(classifier.type,'svm')
+    plot(classifier.feature(classifier.SupportVectorIndices,1),...
+        classifier.feature(classifier.SupportVectorIndices,2),'go','markersize',5,...
+        'linewidth',1.5);
+elseif strcmp(classifier.type,'rvm')
+    plot(classifier.feature(classifier.parameter.Relevant,1),...
+        classifier.feature(classifier.parameter.Relevant,2),'go','markersize',5,...
+        'linewidth',1.5);
+end
+hold off;
 
 xlabel('feature 1');ylabel('feature 2');
 

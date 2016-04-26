@@ -36,6 +36,7 @@ for j = 1:size(truthMat, 1)
         end
     end
 end
+
 audio.truth.data = audio.truth.data(:,1:size(audio.frames,2));
 
 end
