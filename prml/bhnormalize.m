@@ -6,8 +6,8 @@ function normaled = bhnormalize(mat, varargin)
 normaled = zeros(size(mat,1), size(mat,2));
 
 if strcmp(type, 'zmuv')
-    for i = 1:size(mat, 2)
-        normaled(:,i) = (mat(:,i)-mean(mat(:,i)))/std(mat(:,i));
+    for i = 1:size(mat, 1)
+        normaled(i,:) = (mat(i,:)-mean(mat(i,:)))/std(mat(i,:));
     end
 end
 

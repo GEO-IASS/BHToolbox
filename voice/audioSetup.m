@@ -84,11 +84,11 @@ if PLPIns ~= 0
 %     [cepstra,~,~] = melfcc(audio.y,audio.f,'preemph',0,'modelorder',PLPIns,'numcep',PLPIns+1,'dcttype',1,'dither',1,'nbands',...
 %         ceil(hz2bark(audio.f/2))+1,'fbtype','bark','usecmp',1);
     [cepstra, ~, ~, ~, ~, ~] = rastaplp(audio.y, audio.f, 1, PLPIns);
-    %audio.mfcc = [cepstra;diff(cepstra);diff(diff(cepstra))];
+    audio.mfcc = [cepstra;zeros(15,1),diff(cepstra,1,2);zeros(15,2),diff(cepstra,2,2)];
 %     mfccFrames = melfcc(audio.y, audio.f, 'lifterexp', -22, 'nbands', 26, ...
 %         'maxfreq', 8000, 'sumpower', 0, 'fbtype', 'htkmel', 'dcttype', 3, ...
 %         'numcep', 20, 'wintime', audio.winTime/1000, 'hoptime', audio.HopTime/1000);
-    audio.mfcc = [cepstra(1:end,:)];
+    %audio.mfcc = [cepstra(1:end,:)];
     audio = audioTruncate(audio);
 end
 

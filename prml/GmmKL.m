@@ -40,7 +40,7 @@ if plotFlag == 1
     if oneDir == 1
         for i = 1:length(gmmModels1)
             for j = 1:i-1
-                text(j-0.3,i,num2str(KL(i,j)),'fontsize',15);
+                %text(j-0.3,i,num2str(KL(i,j)),'fontsize',15);
             end
         end
     end
